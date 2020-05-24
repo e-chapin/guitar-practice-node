@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updatePracticeItem = exports.toggleComplete = exports.deletePracticeItem = exports.createPracticeItem = void 0;
-var db_1 = require("./db");
+var db_1 = require("../db");
 exports.createPracticeItem = function (body) {
     return new Promise(function (resolve, reject) {
         var _a = body.item, text = _a.text, description = _a.description, url = _a.url, is_completed = _a.is_completed;

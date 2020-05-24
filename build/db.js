@@ -8,5 +8,5 @@ var dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 var Pool = require('pg').Pool;
 exports.pool = new Pool({
-    connectionString: process.env.DB_CONSTRING
+    connectionString: process.env.DATABASE_URL
 });
