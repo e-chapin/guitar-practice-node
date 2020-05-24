@@ -1,0 +1,113 @@
+/* Default styles*/
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+#root,
+body {
+  min-height: 100vh;
+}
+body {
+  margin: 0;
+}
+#root,
+.practice-item-app {
+  display: flex;
+  flex-flow: column nowrap;
+}
+#root {
+  align-items: center;
+  width: 100%;
+}
+/* practice-item list app styles  */
+.practice-item-app {
+  padding-top: 32px;
+  width: 100%;
+  max-width: 480px;
+}
+/* practice-item form styles */
+.practice-item-form input,
+.practice-item {
+  border: 1px solid #ececec;
+}
+.practice-item-form input {
+  padding: 0 14px;
+  width: 100%;
+  height: 48px;
+  transition: 0.25s border ease-in-out;
+}
+.practice-item-form input:focus {
+  outline: 0;
+  border: 1px solid #3498db;
+}
+/* practice-item list styles */
+.practice-item-list ul {
+  padding: 0;
+  margin: 0;
+}
+.practice-item-list li {
+  list-style-type: none;
+}
+/* practice-item item styles */
+.practice-item {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: 8px;
+}
+.practice-item-form + .practice-item-list ul .practice-item {
+  border-top: 0;
+}
+.practice-item-input-wrapper {
+  flex-grow: 1;
+  padding: 0 16px;
+}
+.practice-item input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  transition: 0.25s border-bottom ease-in-out;
+}
+.practice-item input:focus {
+  outline: 0;
+  border-bottom: 1px solid #3498db;
+}
+.practice-item .practice-item-input-error {
+  border-bottom: 1px solid #e74c3c;
+}
+.practice-item span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #ececec;
+  transition: 0.25s all ease-in-out;
+}
+.practice-item-unchecked:hover {
+  background: hsla(168, 76%, 42%, 0.25);
+  border: 1px solid hsl(168, 76%, 42%, 0.25);
+}
+.practice-item-checked {
+  color: #fff;
+  background: #1abc9c;
+  border: 1px solid #1abc9c;
+}
+.item-remove {
+  display: flex;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 1;
+  color: #ececec;
+  transition: 0.25s color ease-in-out;
+}
+.item-remove:hover {
+  color: #111;
+}
