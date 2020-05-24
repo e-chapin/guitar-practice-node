@@ -15,17 +15,16 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const PORT = process.env.PORT || 3001;
+const PORT: number = Number(process.env.PORT) || 3001;
 
 const REACT_BUILD_DIR = path.join(__dirname, 'public/react/react-gp');
 
 app.use(express.static(REACT_BUILD_DIR));
 
-const port: number = 3001;
 const message: string = 'Hello world!';
 
-app.listen(port, () => {
-  console.log(`App running on port ${port}.`);
+app.listen(PORT, () => {
+  console.log(`App running on port ${PORT}.`);
 });
 
 app.get('/', (req, res) => {
