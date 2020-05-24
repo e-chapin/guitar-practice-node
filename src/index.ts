@@ -2,6 +2,7 @@ import express, { response } from 'express';
 import bodyParser from 'body-parser';
 import { pool } from './db';
 import cors from 'cors';
+import * as path from 'path';
 
 import {
   createPracticeItem,
@@ -13,6 +14,13 @@ import {
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+
+const PORT = process.env.PORT || 3001;
+
+const REACT_BUILD_DIR = path.join(__dirname, 'public/react/react-gp');
+
+app.use(express.static(REACT_BUILD_DIR));
+
 const port: number = 3001;
 const message: string = 'Hello world!';
 
@@ -21,7 +29,12 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-  res.status(200).send(message);
+  console.log(process.env.NODE_ENV);
+  if (process.env.NODE_ENV !== 'production') {
+    res.status(200).send(message);
+  } else {
+    res.sendFile('index.html', { root: REACT_BUILD_DIR });
+  }
 });
 
 app.get('/api/practice-item', (req, response) => {

@@ -5,6 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start:dev": "nodemon --debug",
+    "build": "sh ./util/build.sh",
+    "start": "npm install --only=prod && NODE_ENV=production node ./build/index.js",
     "debug": "nodemon --inspect --server=9229 ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

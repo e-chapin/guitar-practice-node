@@ -10,4 +10,3 @@ var Pool = require('pg').Pool;
 exports.pool = new Pool({
     connectionString: process.env.DB_CONSTRING
 });
-//# sourceMappingURL=db.js.map

@@ -44,4 +44,3 @@ exports.updatePracticeItem = function (body) {
         });
     });
 };
-//# sourceMappingURL=practice_item_model.js.map
