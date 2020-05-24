@@ -7,7 +7,7 @@ const PracticeItemHandler = (props: PracticeItemHandlerInterface) => {
   return (
     <div className="practice-item item">
       <div onClick={() => props.handlePracticeItemComplete(props.item.id)}>
-        {props.item.isCompleted ? (
+        {props.item.is_completed ? (
           <span className="practice-item-checked">✔</span>
         ) : (
           <span className="practice-item-unchecked" />
@@ -15,8 +15,11 @@ const PracticeItemHandler = (props: PracticeItemHandlerInterface) => {
       </div>
       <div className="practice-item-input-wrapper">
         <input
+          type="text"
           value={props.item.text}
-          onBlur={props.handlePracticeItemBlur}
+          onBlur={(event: React.ChangeEvent<HTMLInputElement>) =>
+            props.handlePracticeItemBlur(event, props.item.id)
+          }
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             props.handlePracticeItemUpdate(event, props.item.id)
           }

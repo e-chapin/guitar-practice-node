@@ -19,9 +19,9 @@ const PracticeItemForm = (props: PracticeItemFormInterface) => {
   function handleInputEnter(event: React.KeyboardEvent) {
     if (event.key == 'Enter') {
       const newPracticeItem: PracticeItemInterface = {
-        id: shortid.generate(),
+        id: '',
         text: formState,
-        isCompleted: false
+        is_completed: false
       };
       props.handlePracticeItemCreate(newPracticeItem);
 

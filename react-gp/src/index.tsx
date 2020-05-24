@@ -14,29 +14,32 @@ const PracticeItemApp = () => {
   const [items, setItems] = React.useState<PracticeItemInterface[]>([]);
 
   useEffect(() => {
-    debugger;
     getItems();
   }, []);
 
   function getItems() {
-    fetch('http://localhost:3001/api/practice-items/all')
+    fetch('/api/practice-item')
       .then((response) => {
         return response.text();
       })
       .then((data) => {
-        debugger;
-        //setItems(data);
+        var practiceItems = JSON.parse(data);
+        setItems(practiceItems);
       });
   }
 
   // Creating new todo item
   function handlePracticeItemCreate(item: PracticeItemInterface) {
-    // Prepare new todos state
-    const newPracticeItemState: PracticeItemInterface[] = [...items];
-    // Update new todos state
-    newPracticeItemState.push(item);
-    // Update todos state
-    setItems(newPracticeItemState);
+    fetch('/api/practice-item', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ item })
+    }).then((response) => {
+      getItems();
+      return response.text();
+    });
   }
 
   function handlePracticeItemUpdate(
@@ -44,7 +47,6 @@ const PracticeItemApp = () => {
     id: string
   ) {
     const newPracticeItemState: PracticeItemInterface[] = [...items];
-
     newPracticeItemState.find(
       (item: PracticeItemInterface) => item.id === id
     )!.text = event.target.value;
@@ -53,31 +55,65 @@ const PracticeItemApp = () => {
   }
 
   function handlePracticeItemRemove(id: string) {
-    const newPracticeItemState: PracticeItemInterface[] = items.filter(
-      (item: PracticeItemInterface) => item.id !== id
-    );
-
-    setItems(newPracticeItemState);
+    fetch('/api/practice-item', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id })
+    }).then((response) => {
+      getItems();
+      return response.text();
+    });
   }
 
   function handlePracticeItemComplete(id: string) {
     const newPracticeItemState: PracticeItemInterface[] = [...items];
-
     const practiceItem: PracticeItemInterface = newPracticeItemState.find(
       (item: PracticeItemInterface) => item.id === id
     )!;
-
-    practiceItem.isCompleted = !practiceItem.isCompleted;
-
-    setItems(newPracticeItemState);
+    const is_completed: boolean = !practiceItem.is_completed;
+    fetch('/api/practice-item/complete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id, is_completed })
+    }).then((response) => {
+      getItems();
+      return response.text();
+    });
   }
 
-  function handlePracticeItemBlur(event: React.ChangeEvent<HTMLInputElement>) {
+  function handlePracticeItemBlur(
+    event: React.ChangeEvent<HTMLInputElement>,
+    id: string
+  ) {
     if (event.target.value.length === 0) {
       event.target.classList.add('practice-item-error');
     } else {
       event.target.classList.remove('practice-item-error');
     }
+
+    const newPracticeItemState: PracticeItemInterface[] = [...items];
+    var item = newPracticeItemState.find(
+      (item: PracticeItemInterface) => item.id === id
+    )!;
+
+    if (item.text != event.target.value) {
+      item.text = event.target.value;
+    }
+
+    fetch('/api/practice-item/update', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ item })
+    }).then((response) => {
+      getItems();
+      return response.text();
+    });
   }
 
   return (

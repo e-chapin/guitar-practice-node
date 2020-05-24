@@ -1,4 +1,5 @@
 import { Url } from 'url';
+import { ReactHTML } from 'react';
 
 // PracticeItem Interface
 export interface PracticeItemInterface {
@@ -6,7 +7,7 @@ export interface PracticeItemInterface {
   text: string;
   description?: string;
   url?: Url;
-  isCompleted: boolean;
+  is_completed: boolean;
 }
 
 export interface PracticeItemFormInterface {
@@ -22,7 +23,10 @@ export interface PracticeItemListInterface {
   ) => void;
   handlePracticeItemRemove: (id: string) => void;
   handlePracticeItemComplete: (id: string) => void;
-  handlePracticeItemBlur: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handlePracticeItemBlur: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    id: string
+  ) => void;
 }
 
 export interface PracticeItemHandlerInterface {
@@ -34,5 +38,8 @@ export interface PracticeItemHandlerInterface {
 
   handlePracticeItemRemove: (id: string) => void;
   handlePracticeItemComplete: (id: string) => void;
-  handlePracticeItemBlur: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handlePracticeItemBlur: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    id: string
+  ) => void;
 }
