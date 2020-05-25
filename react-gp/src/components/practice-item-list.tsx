@@ -6,7 +6,7 @@ import { PracticeItemListInterface } from './../interfaces';
 
 // PracticeItemList
 
-const PracticeItem = (props: PracticeItemListInterface) => {
+const PracticeItemList = (props: PracticeItemListInterface) => {
   return (
     <div className="practice-item-list">
       <ul>
@@ -26,4 +26,4 @@ const PracticeItem = (props: PracticeItemListInterface) => {
   );
 };
 
-export default PracticeItem;
+export default PracticeItemList;
